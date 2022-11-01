@@ -1,0 +1,971 @@
+\documentclass[1p]{elsarticle_modified}
+%\bibliographystyle{elsarticle-num}
+
+%\usepackage[colorlinks]{hyperref}
+%\usepackage{abbrmath_seonhwa} %\Abb, \Ascr, \Acal ,\Abf, \Afrak
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{scalefnt}
+\usepackage{amsbsy}
+\usepackage{kotex}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{xcolor} %% white, black, red, green, blue, cyan, magenta, yellow
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\usepackage{multirow}
+\usepackage{array} % fixed length table
+\usepackage{hhline}
+
+%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+	\edef\arraystretch{#1}%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{*\c@MaxMatrixCols c}}
+\makeatother %https://tex.stackexchange.com/questions/14071/how-can-i-increase-the-line-spacing-in-a-matrix
+%%%%%%%%%%%%%%%
+
+\usepackage[normalem]{ulem}
+
+\newcommand{\msout}[1]{\ifmmode\text{\sout{\ensuremath{#1}}}\else\sout{#1}\fi}
+%SOURCE: \msout is \stkout macro in https://tex.stackexchange.com/questions/20609/strikeout-in-math-mode
+
+\newcommand{\cancel}[1]{
+	\ifmmode
+	{\color{red}\msout{#1}}
+	\else
+	{\color{red}\sout{#1}}
+	\fi
+}
+
+\newcommand{\add}[1]{
+	{\color{blue}\uwave{#1}}
+}
+
+\newcommand{\replace}[2]{
+	\ifmmode
+	{\color{red}\msout{#1}}{\color{blue}\uwave{#2}}
+	\else
+	{\color{red}\sout{#1}}{\color{blue}\uwave{#2}}
+	\fi
+}
+
+\newcommand{\Sol}{\mathcal{S}} %segment
+\newcommand{\D}{D} %diagram
+\newcommand{\A}{\mathcal{A}} %arc
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5 test
+
+\def\sl{\operatorname{\textup{SL}}(2,\Cbb)}
+\def\psl{\operatorname{\textup{PSL}}(2,\Cbb)}
+\def\quan{\mkern 1mu \triangleright \mkern 1mu}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{exam}[thm]{Example}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{alg}[thm]{Algorithm}
+
+\newcommand{\I}{\sqrt{-1}}
+\begin{document}
+
+%\begin{frontmatter}
+%
+%\title{Boundary parabolic representations of knots up to 8 crossings}
+%
+%%% Group authors per affiliation:
+%\author{Yunhi Cho} 
+%\address{Department of Mathematics, University of Seoul, Seoul, Korea}
+%\ead{yhcho@uos.ac.kr}
+%
+%
+%\author{Seonhwa Kim} %\fnref{s_kim}}
+%\address{Center for Geometry and Physics, Institute for Basic Science, Pohang, 37673, Korea}
+%\ead{ryeona17@ibs.re.kr}
+%
+%\author{Hyuk Kim}
+%\address{Department of Mathematical Sciences, Seoul National University, Seoul 08826, Korea}
+%\ead{hyukkim@snu.ac.kr}
+%
+%\author{Seokbeom Yoon}
+%\address{Department of Mathematical Sciences, Seoul National University, Seoul, 08826,  Korea}
+%\ead{sbyoon15@snu.ac.kr}
+%
+%\begin{abstract}
+%We find all boundary parabolic representation of knots up to 8 crossings.
+%
+%\end{abstract}
+%\begin{keyword}
+%    \MSC[2010] 57M25 
+%\end{keyword}
+%
+%\end{frontmatter}
+
+%\linenumbers
+%\tableofcontents
+%
+\newcommand\colored[1]{\textcolor{white}{\rule[-0.35ex]{0.8em}{1.4ex}}\kern-0.8em\color{red} #1}%
+%\newcommand\colored[1]{\textcolor{white}{ #1}\kern-2.17ex	\textcolor{white}{ #1}\kern-1.81ex	\textcolor{white}{ #1}\kern-2.15ex\color{red}#1	}
+
+{\Large $\underline{12n_{0605}~(K12n_{0605})}$}
+
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.6}
+\vspace{1cm}\begin{tabular}{m{100pt}>{\centering\arraybackslash}m{274pt}}
+\multirow{5}{120pt}{
+	\centering
+	\includegraphics[width=112pt]{../../../GIT/diagram.site/Diagrams/png/2694_12n_0605.png}\\
+\ \ \ A knot diagram\footnotemark}&
+\allowdisplaybreaks
+\textbf{Linearized knot diagam} \\
+\cline{2-2}
+ &
+\begin{tikzpicture}[x=20pt, y=17pt]
+	% nodes
+	\node (C0) at (0, 0) {};
+	\node (C1) at (1, 0) {};
+	\node (C1U) at (1, +1) {};
+	\node (C1D) at (1, -1) {3};
+
+	\node (C2) at (2, 0) {};
+	\node (C2U) at (2, +1) {};
+	\node (C2D) at (2, -1) {7};
+
+	\node (C3) at (3, 0) {};
+	\node (C3U) at (3, +1) {};
+	\node (C3D) at (3, -1) {10};
+
+	\node (C4) at (4, 0) {};
+	\node (C4U) at (4, +1) {};
+	\node (C4D) at (4, -1) {8};
+
+	\node (C5) at (5, 0) {};
+	\node (C5U) at (5, +1) {};
+	\node (C5D) at (5, -1) {9};
+
+	\node (C6) at (6, 0) {};
+	\node (C6U) at (6, +1) {};
+	\node (C6D) at (6, -1) {2};
+
+	\node (C7) at (7, 0) {};
+	\node (C7U) at (7, +1) {};
+	\node (C7D) at (7, -1) {12};
+
+	\node (C8) at (8, 0) {};
+	\node (C8U) at (8, +1) {};
+	\node (C8D) at (8, -1) {5};
+
+	\node (C9) at (9, 0) {};
+	\node (C9U) at (9, +1) {};
+	\node (C9D) at (9, -1) {3};
+
+	\node (C10) at (10, 0) {};
+	\node (C10U) at (10, +1) {};
+	\node (C10D) at (10, -1) {4};
+
+	\node (C11) at (11, 0) {};
+	\node (C11U) at (11, +1) {};
+	\node (C11D) at (11, -1) {1};
+
+	\node (C12) at (12, 0) {};
+	\node (C12U) at (12, +1) {};
+	\node (C12D) at (12, -1) {8};
+	\node (C13) at (13, 0) {};
+
+	% arrows
+	\draw[->,>={angle 60}]
+	(C0) edge (C1) (C1) edge (C2) (C2) edge (C3) (C3) edge (C4) (C4) edge (C5) (C5) edge (C6) (C6) edge (C7) (C7) edge (C8) (C8) edge (C9) (C9) edge (C10) (C10) edge (C11) (C11) edge (C12) (C12) edge (C13) ;	\draw[->,>=stealth]
+	(C1U) edge (C1D) (C2U) edge (C2D) (C3D) edge (C3U) (C4D) edge (C4U) (C5D) edge (C5U) (C6U) edge (C6D) (C7U) edge (C7D) (C8D) edge (C8U) (C9D) edge (C9U) (C10D) edge (C10U) (C11U) edge (C11D) (C12U) edge (C12D) ;
+	\end{tikzpicture} \\
+\hhline{~~} \\& 
+\textbf{Solving Sequence} \\ \cline{2-2} 
+ &
+\begin{tikzpicture}[x=23pt, y=7pt]
+	% node
+	\node (A0) at (-1/8, 0) {2,6};
+	\node (A1) at (1, 0) {7};
+	\node (A2) at (33/16, 0) {3,9};
+	\node (A3) at (25/8, 0) {10};
+	\node (A4) at (33/8, 0) {1};
+	\node (A5) at (41/8, 0) {5};
+	\node (A6) at (49/8, 0) {8};
+	\node (A7) at (57/8, 0) {4};
+	\node (A8) at (65/8, 0) {12};
+	\node (A9) at (73/8, 0) {11};
+	\node (C1) at (1/2, -1) {$c_{6}$};
+	\node (C2) at (3/2, -1) {$c_{2}$};
+	\node (C3) at (21/8, -1) {$c_{9}$};
+	\node (C4) at (29/8, -1) {$c_{1}$};
+	\node (C5) at (37/8, -1) {$c_{5}$};
+	\node (C6) at (45/8, -1) {$c_{8}$};
+	\node (C7) at (53/8, -1) {$c_{4}$};
+	\node (C8) at (61/8, -1) {$c_{12}$};
+	\node (C9) at (69/8, -1) {$c_{11}$};
+	\node (A10) at (11, 0) {$c_{3},c_{7},c_{10}$};
+
+	% edge
+	\draw[->,>=stealth]	
+	(A0) edge (A1) (A1) edge (A2) (A2) edge (A3) (A3) edge (A4) (A4) edge (A5) (A5) edge (A6) (A6) edge (A7) (A7) edge (A8) (A8) edge (A9) ;
+	\draw[->>,>={angle 60}]	
+	(A9) edge (A10);
+\end{tikzpicture} \\ 
+
+\end{tabular} \\
+
+\footnotetext{
+The image of knot diagram is generated by the software ``\textbf{Draw programme}" developed by Andrew Bartholomew(\url{http://www.layer8.co.uk/maths/draw/index.htm\#Running-draw}), where we modified some parts for our purpose(\url{https://github.com/CATsTAILs/LinksPainter}).
+}\phantom \\ \newline 
+\centering \textbf{Ideals for irreducible components\footnotemark of $X_{\text{par}}$} 
+ 
+\begin{align*}
+I^u_{1}&=\langle 
+u^7-3 u^6- u^5+9 u^4-6 u^3-2 u^2+4 b+2,\;u^7-2 u^6- u^5+6 u^4-6 u^3+2 u^2+4 a+2 u,\\
+\phantom{I^u_{1}}&\phantom{= \langle  }u^8-2 u^7-2 u^6+8 u^5-3 u^4-4 u^3+2 u^2+2 u+2\rangle \\
+I^u_{2}&=\langle 
+b-1,\;u^2+2 a- u,\;u^4- u^2+2\rangle \\
+I^u_{3}&=\langle 
+-63 u^7+285 u^6-207 u^5+132 u^4-665 u^3-273 u^2+1121 b+1277 u-919,\\
+\phantom{I^u_{3}}&\phantom{= \langle  }6601 u^7-21641 u^6+23931 u^5-33635 u^4+55727 u^3+23373 u^2+24662 a-106399 u+92305,\\
+\phantom{I^u_{3}}&\phantom{= \langle  }u^8-4 u^7+6 u^6-8 u^5+12 u^4-2 u^3-18 u^2+26 u-11\rangle \\
+I^u_{4}&=\langle 
+a u+b- a+1,\;2 a^2-2 a u-4 a- u-1,\;u^2+2 u-1\rangle \\
+I^u_{5}&=\langle 
+b-2 a+1,\;2 a^2-2 a-1,\;u+1\rangle \\
+I^u_{6}&=\langle 
+b+1,\;- u^3- u^2+2 a+u-1,\;u^4+1\rangle \\
+I^u_{7}&=\langle 
+b,\;a+1,\;u+1\rangle \\
+I^u_{8}&=\langle 
+-2 a u+2 b+2 a+u-3,\;4 a^2-4 a+9,\;u^2-2 u+1\rangle \\
+I^u_{9}&=\langle 
+b-1,\;u-1\rangle \\
+\\
+I^v_{1}&=\langle 
+a,\;b+1,\;v+1\rangle \\
+\end{align*}
+\raggedright * 9 irreducible components of $\dim_{\mathbb{C}}=0$, with total 36 representations.\\
+\raggedright * 1 irreducible components of $\dim_{\mathbb{C}}=1$ \\
+\footnotetext{All coefficients of polynomials are rational numbers. But the coefficients are sometimes approximated in decimal forms when there is not enough margin.}
+\newpage
+\renewcommand{\arraystretch}{1}
+\centering \section*{I. $I^u_{1}= \langle u^7-3 u^6- u^5+9 u^4-6 u^3-2 u^2+4 b+2,\;u^7-2 u^6- u^5+6 u^4-6 u^3+2 u^2+4 a+2 u,\;u^8-2 u^7+\cdots+2 u+2 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{2}=$&$\begin{pmatrix}0\\u\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\u^2\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}- u\\- u^3+u\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}-\frac{1}{4} u^7+\frac{1}{2} u^6+\cdots-\frac{1}{2} u^2-\frac{1}{2} u\\-\frac{1}{4} u^7+\frac{3}{4} u^6+\cdots+\frac{1}{2} u^2-\frac{1}{2}\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}-\frac{1}{2} u^7+\frac{3}{4} u^6+\cdots-\frac{1}{2} u-\frac{1}{2}\\-\frac{3}{4} u^7+\frac{5}{4} u^6+\cdots+u+\frac{1}{2}\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}u^3\\u^5- u^3+u\end{pmatrix}$ \\
+\flushright $a_{5}=$&$\begin{pmatrix}\frac{1}{4} u^7-\frac{1}{2} u^6+\cdots-\frac{1}{2} u+1\\\frac{1}{4} u^7-\frac{3}{4} u^6+\cdots+\frac{1}{2} u^2+\frac{1}{2}\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}\frac{1}{2} u^7- u^6-\frac{1}{2} u^5+3 u^4-2 u^3- u+1\\\frac{1}{2} u^7- u^6-\frac{1}{2} u^5+2 u^4-2 u^3+u^2- u\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}-\frac{1}{2} u^7+\frac{3}{4} u^6+\cdots-\frac{1}{2} u-\frac{1}{2}\\-\frac{3}{4} u^7+\frac{1}{4} u^6+\cdots+2 u+\frac{1}{2}\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}\frac{1}{2} u^6- u^5-\frac{1}{2} u^4+3 u^3-2 u^2-1\\\frac{1}{2} u^6- u^5-\frac{1}{2} u^4+2 u^3-2 u^2-1\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}\frac{1}{2} u^6-2 u^5-\frac{1}{2} u^4+3 u^3-2 u^2-1\\- u^7+\frac{1}{2} u^6-\frac{1}{2} u^4+u^3-2 u^2-1\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= -1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= \frac{1}{2} u^7-\frac{1}{2} u^6-\frac{1}{2} u^5-\frac{1}{2} u^4+u^3+9 u^2-8 u+1$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&u^8+8 u^7+30 u^6+64 u^5+77 u^4+68 u^3+8 u^2-4 u+4
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&u^8-2 u^7-2 u^6+8 u^5-3 u^4-4 u^3+2 u^2+2 u+2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&u^8-2 u^7-5 u^6+16 u^5-3 u^4-14 u^3+u^2-2
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&y^8-4 y^7+30 y^6-548 y^5-2223 y^4-2640 y^3+1224 y^2+48 y+16
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&y^8-8 y^7+30 y^6-64 y^5+77 y^4-68 y^3+8 y^2+4 y+4
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&y^8-14 y^7+83 y^6-280 y^5+443 y^4-182 y^3+13 y^2-4 y+4
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= -0.795087\phantom{ +0.000000I} \\
+a &= -1.17483\phantom{ +0.000000I} \\
+b &= -1.67677\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}10.6824\phantom{ +0.000000I} & \phantom{-}12.2800\phantom{ +0.000000I} \\ \hline\begin{aligned}
+u &= \phantom{-}0.973229 + 0.738508 I \\
+a &= -0.555279 - 0.483622 I \\
+b &= \phantom{-}0.655349 - 0.111756 I\end{aligned}
+ & \phantom{-}2.80118 - 5.76470 I & -0.66223 + 7.42338 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.973229 - 0.738508 I \\
+a &= -0.555279 + 0.483622 I \\
+b &= \phantom{-}0.655349 + 0.111756 I\end{aligned}
+ & \phantom{-}2.80118 + 5.76470 I & -0.66223 - 7.42338 I \\ \hline\begin{aligned}
+u &= -0.253073 + 0.513412 I \\
+a &= \phantom{-}0.548752 - 0.359255 I \\
+b &= -0.248429 - 0.443565 I\end{aligned}
+ & \phantom{-}0.076761 + 1.027570 I & \phantom{-}1.43267 - 6.49756 I \\ \hline\begin{aligned}
+u &= -0.253073 - 0.513412 I \\
+a &= \phantom{-}0.548752 + 0.359255 I \\
+b &= -0.248429 + 0.443565 I\end{aligned}
+ & \phantom{-}0.076761 - 1.027570 I & \phantom{-}1.43267 + 6.49756 I \\ \hline\begin{aligned}
+u &= \phantom{-}1.55774 + 0.70350 I \\
+a &= \phantom{-}0.340083 + 1.296596 I \\
+b &= -1.80248 + 0.99093 I\end{aligned}
+ & -13.5641 - 12.7719 I & \phantom{-}1.06054 + 5.06853 I \\ \hline\begin{aligned}
+u &= \phantom{-}1.55774 - 0.70350 I \\
+a &= \phantom{-}0.340083 - 1.296596 I \\
+b &= -1.80248 - 0.99093 I\end{aligned}
+ & -13.5641 + 12.7719 I & \phantom{-}1.06054 - 5.06853 I \\ \hline\begin{aligned}
+u &= -1.76070\phantom{ +0.000000I} \\
+a &= \phantom{-}0.507716\phantom{ +0.000000I} \\
+b &= \phantom{-}2.46790\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}7.40006\phantom{ +0.000000I} & \phantom{-}0.0581740\phantom{ +0.000000I}\\
+ \hline 
+ \end{array}$$\newpage\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{II. $I^u_{2}= \langle b-1,\;u^2+2 a- u,\;u^4- u^2+2 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{2}=$&$\begin{pmatrix}0\\u\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\u^2\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}- u\\- u^3+u\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}-\frac{1}{2} u^2+\frac{1}{2} u\\1\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}-\frac{1}{2} u^2+\frac{3}{2} u\\u^3- u+1\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}u^3\\- u\end{pmatrix}$ \\
+\flushright $a_{5}=$&$\begin{pmatrix}-\frac{1}{2} u^2+\frac{1}{2} u+1\\1\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}-\frac{1}{2} u^2+\frac{1}{2} u\\1\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}u^3- u\\- u\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}u\\u^3- u\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= 1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= 4 u^2+4$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&(u^2- u+2)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&u^4- u^2+2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{8}\end{aligned}$$&$\begin{aligned}
+&(u+1)^4
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{4},c_{5},c_{9}\\c_{10}\end{aligned}$$&$\begin{aligned}
+&(u-1)^4
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&(y^2+3 y+4)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&(y^2- y+2)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&(y-1)^4
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{2}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= \phantom{-}0.978318 + 0.676097 I \\
+a &= \phantom{-}0.239159 - 0.323389 I \\
+b &= \phantom{-}1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}4.11234 - 5.33349 I & \phantom{-}6.00000 + 5.29150 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.978318 - 0.676097 I \\
+a &= \phantom{-}0.239159 + 0.323389 I \\
+b &= \phantom{-}1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}4.11234 + 5.33349 I & \phantom{-}6.00000 - 5.29150 I \\ \hline\begin{aligned}
+u &= -0.978318 + 0.676097 I \\
+a &= -0.739159 + 0.999486 I \\
+b &= \phantom{-}1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}4.11234 + 5.33349 I & \phantom{-}6.00000 - 5.29150 I \\ \hline\begin{aligned}
+u &= -0.978318 - 0.676097 I \\
+a &= -0.739159 - 0.999486 I \\
+b &= \phantom{-}1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}4.11234 - 5.33349 I & \phantom{-}6.00000 + 5.29150 I\\
+ \hline 
+ \end{array}$$\newpage\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{III. $I^u_{3}= \langle -63 u^7+285 u^6+\cdots+1121 b-919,\;6601 u^7-21641 u^6+\cdots+24662 a+92305,\;u^8-4 u^7+\cdots+26 u-11 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{2}=$&$\begin{pmatrix}0\\u\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\u^2\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}- u\\- u^3+u\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}-0.267659 u^{7}+0.877504 u^{6}+\cdots+4.31429 u-3.74280\\0.0561998 u^{7}-0.254237 u^{6}+\cdots-1.13916 u+0.819804\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}-0.238221 u^{7}+1.03005 u^{6}+\cdots+4.95568 u-4.36100\\0.599465 u^{7}-1.71186 u^{6}+\cdots-8.48439 u+4.41124\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}u^3\\u^5- u^3+u\end{pmatrix}$ \\
+\flushright $a_{5}=$&$\begin{pmatrix}0.0185305 u^{7}-0.0362096 u^{6}+\cdots-0.502595 u+0.792677\\0.0374665 u^{7}-0.169492 u^{6}+\cdots-0.0927743 u+0.213202\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}-0.407591 u^{7}+1.17720 u^{6}+\cdots+6.03958 u-4.71332\\-0.312221 u^{7}+0.745763 u^{6}+\cdots+3.43979 u-1.44335\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}-0.0381559 u^{7}-0.0654854 u^{6}+\cdots-1.25833 u+0.619455\\-0.399643 u^{7}+0.474576 u^{6}+\cdots+6.32293 u-2.60749\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}0.321953 u^{7}-1.07550 u^{6}+\cdots-4.54181 u+4.51172\\-0.00892061 u^{7}+0.135593 u^{6}+\cdots+0.926851 u+0.187333\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}-0.181169 u^{7}-0.228043 u^{6}+\cdots+1.13259 u+1.07728\\-1.87957 u^{7}+6.16949 u^{6}+\cdots+21.9875 u-11.5290\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= -1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= \frac{518}{1121} u^7-\frac{84}{59} u^6+\frac{1702}{1121} u^5-\frac{2580}{1121} u^4+\frac{196}{59} u^3+\frac{2992}{1121} u^2-\frac{8756}{1121} u+\frac{9300}{1121}$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&u^8+4 u^7-4 u^6-28 u^5+82 u^4+152 u^3+164 u^2+280 u+121
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&u^8-4 u^7+6 u^6-8 u^5+12 u^4-2 u^3-18 u^2+26 u-11
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&(u^4+2 u^3+4 u^2-2 u-1)^2
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&y^8-24 y^7+\cdots-38712 y+14641
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&y^8-4 y^7-4 y^6+28 y^5+82 y^4-152 y^3+164 y^2-280 y+121
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&(y^4+4 y^3+22 y^2-12 y+1)^2
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{3}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= \phantom{-}0.737313 + 0.794288 I \\
+a &= \phantom{-}0.634238 + 0.289969 I \\
+b &= -0.632293\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}3.51425\phantom{ +0.000000I} & \phantom{-}                -6
+1.050747 + 0. 10   I\phantom{ +0.000000I} \\ \hline\begin{aligned}
+u &= \phantom{-}0.737313 - 0.794288 I \\
+a &= \phantom{-}0.634238 - 0.289969 I \\
+b &= -0.632293\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}3.51425\phantom{ +0.000000I} & \phantom{-}                -6
+1.050747 + 0. 10   I\phantom{ +0.000000I} \\ \hline\begin{aligned}
+u &= -1.13723\phantom{ +0.000000I} \\
+a &= \phantom{-}0.132208\phantom{ +0.000000I} \\
+b &= \phantom{-}0.321336\phantom{ +0.000000I}\end{aligned}
+ & -2.70122\phantom{ +0.000000I} & \phantom{-}4.79070\phantom{ +0.000000I} \\ \hline\begin{aligned}
+u &= \phantom{-}0.741896\phantom{ +0.000000I} \\
+a &= -1.67811\phantom{ +0.000000I} \\
+b &= \phantom{-}0.321336\phantom{ +0.000000I}\end{aligned}
+ & -2.70122\phantom{ +0.000000I} & \phantom{-}4.79070\phantom{ +0.000000I} \\ \hline\begin{aligned}
+u &= -0.47349 + 1.60637 I \\
+a &= -0.607711 + 0.003620 I \\
+b &= \phantom{-}1.15548 + 1.89385 I\end{aligned}
+ & -7.80872 + 4.85117 I & \phantom{-}1.07929 - 2.27864 I \\ \hline\begin{aligned}
+u &= -0.47349 - 1.60637 I \\
+a &= -0.607711 - 0.003620 I \\
+b &= \phantom{-}1.15548 - 1.89385 I\end{aligned}
+ & -7.80872 - 4.85117 I & \phantom{-}1.07929 + 2.27864 I \\ \hline\begin{aligned}
+u &= \phantom{-}1.93385 + 0.46705 I \\
+a &= -0.162665 - 1.055547 I \\
+b &= \phantom{-}1.15548 - 1.89385 I\end{aligned}
+ & -7.80872 - 4.85117 I & \phantom{-}1.07929 + 2.27864 I \\ \hline\begin{aligned}
+u &= \phantom{-}1.93385 - 0.46705 I \\
+a &= -0.162665 + 1.055547 I \\
+b &= \phantom{-}1.15548 + 1.89385 I\end{aligned}
+ & -7.80872 + 4.85117 I & \phantom{-}1.07929 - 2.27864 I\\
+ \hline 
+ \end{array}$$\newpage\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{IV. $I^u_{4}= \langle a u+b- a+1,\;2 a^2-2 a u-4 a- u-1,\;u^2+2 u-1 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{2}=$&$\begin{pmatrix}0\\u\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\-2 u+1\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}- u\\-4 u+2\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}a\\- a u+a-1\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}3 a u+2 u-1\\13 a u-5 a+10 u-5\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}5 u-2\\25 u-10\end{pmatrix}$ \\
+\flushright $a_{5}=$&$\begin{pmatrix}a u+u+1\\4 a u-2 a+3 u\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}3 u\\13 u-5\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}10 a u-3 a-2 u+1\\48 a u-20 a-10 u+5\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}- u+1\\-6 u+3\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}-30 u+13\\-151 u+63\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= -1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= 0$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&(u^2+6 u+1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&(u^2+2 u-1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&u^4-4 u^3+12 u^2-4 u-7
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&(y^2-34 y+1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&(y^2-6 y+1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&y^4+8 y^3+98 y^2-184 y+49
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{4}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= \phantom{-}0.414214\phantom{ +0.000000I} \\
+a &= -0.264020\phantom{ +0.000000I} \\
+b &= -1.15466\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}2.46740\phantom{ +0.000000I} & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}0.414214\phantom{ +0.000000I} \\
+a &= \phantom{-}2.67823\phantom{ +0.000000I} \\
+b &= \phantom{-}0.568873\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}2.46740\phantom{ +0.000000I} & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -2.41421\phantom{ +0.000000I} \\
+a &= -0.207107 + 0.814993 I \\
+b &= -1.70711 + 2.78256 I\end{aligned}
+ & -17.2718\phantom{ +0.000000I} & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -2.41421\phantom{ +0.000000I} \\
+a &= -0.207107 - 0.814993 I \\
+b &= -1.70711 - 2.78256 I\end{aligned}
+ & -17.2718\phantom{ +0.000000I} & \phantom{-0.000000 } 0\\
+ \hline 
+ \end{array}$$\newpage\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{V. $I^u_{5}= \langle b-2 a+1,\;2 a^2-2 a-1,\;u+1 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{2}=$&$\begin{pmatrix}0\\-1\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\1\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}a\\2 a-1\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}3 a-1\\2 a-1\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}-1\\-1\end{pmatrix}$ \\
+\flushright $a_{5}=$&$\begin{pmatrix}a+2\\3\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}-4 a+1\\-4 a+2\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}- a-3\\-3\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}-4 a\\-4 a+1\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}-4 a+1\\-4 a+2\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= 1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= 0$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{2},c_{7}\\c_{11}\end{aligned}$$&$\begin{aligned}
+&(u-1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&u^2-3
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6},c_{12}\end{aligned}$$&$\begin{aligned}
+&(u+1)^2
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{2},c_{6}\\c_{7},c_{11},c_{12}\end{aligned}$$&$\begin{aligned}
+&(y-1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&(y-3)^2
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{5}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= -1.00000\phantom{ +0.000000I} \\
+a &= \phantom{-}1.36603\phantom{ +0.000000I} \\
+b &= \phantom{-}1.73205\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}9.86960\phantom{ +0.000000I} & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.00000\phantom{ +0.000000I} \\
+a &= -0.366025\phantom{ +0.000000I} \\
+b &= -1.73205\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}9.86960\phantom{ +0.000000I} & \phantom{-0.000000 } 0\\
+ \hline 
+ \end{array}$$\newpage\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{VI. $I^u_{6}= \langle b+1,\;- u^3- u^2+2 a+u-1,\;u^4+1 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{2}=$&$\begin{pmatrix}0\\u\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\u^2\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}- u\\- u^3+u\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}\frac{1}{2} u^3+\frac{1}{2} u^2-\frac{1}{2} u+\frac{1}{2}\\-1\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}\frac{1}{2} u^3+\frac{1}{2} u^2-\frac{3}{2} u+\frac{1}{2}\\- u^3+u-1\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}u^3\\- u^3\end{pmatrix}$ \\
+\flushright $a_{5}=$&$\begin{pmatrix}-\frac{1}{2} u^3-\frac{1}{2} u^2+\frac{1}{2} u+\frac{1}{2}\\1\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}-\frac{1}{2} u^3-\frac{1}{2} u^2+\frac{1}{2} u-\frac{1}{2}\\1\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}0\\- u^3\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}- u\\- u^3+u\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= 1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= 8$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&(u^2+1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&u^4+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{8}\end{aligned}$$&$\begin{aligned}
+&(u-1)^4
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{4},c_{5},c_{9}\\c_{10}\end{aligned}$$&$\begin{aligned}
+&(u+1)^4
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&(y+1)^4
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&(y^2+1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&(y-1)^4
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{6}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= \phantom{-}0.707107 + 0.707107 I \\
+a &= -0.207107 + 0.500000 I \\
+b &= -1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}4.93480\phantom{ +0.000000I} & \phantom{-}8.00000\phantom{ +0.000000I} \\ \hline\begin{aligned}
+u &= \phantom{-}0.707107 - 0.707107 I \\
+a &= -0.207107 - 0.500000 I \\
+b &= -1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}4.93480\phantom{ +0.000000I} & \phantom{-}8.00000\phantom{ +0.000000I} \\ \hline\begin{aligned}
+u &= -0.707107 + 0.707107 I \\
+a &= \phantom{-}1.207107 - 0.500000 I \\
+b &= -1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}4.93480\phantom{ +0.000000I} & \phantom{-}8.00000\phantom{ +0.000000I} \\ \hline\begin{aligned}
+u &= -0.707107 - 0.707107 I \\
+a &= \phantom{-}1.207107 + 0.500000 I \\
+b &= -1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}4.93480\phantom{ +0.000000I} & \phantom{-}8.00000\phantom{ +0.000000I}\\
+ \hline 
+ \end{array}$$\newpage\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{VII. $I^u_{7}= \langle b,\;a+1,\;u+1 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{2}=$&$\begin{pmatrix}0\\-1\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\1\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}-1\\-1\end{pmatrix}$ \\
+\flushright $a_{5}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}-2\\-1\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= 1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= -12$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{2},c_{7}\\c_{11}\end{aligned}$$&$\begin{aligned}
+&u-1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&u
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6},c_{12}\end{aligned}$$&$\begin{aligned}
+&u+1
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{2},c_{6}\\c_{7},c_{11},c_{12}\end{aligned}$$&$\begin{aligned}
+&y-1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&y
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{7}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= -1.00000\phantom{ +0.000000I} \\
+a &= -1.00000\phantom{ +0.000000I} \\
+b &= \phantom{-0.000000 } 0\end{aligned}
+ & -3.28987\phantom{ +0.000000I} & -12.0000\phantom{ +0.000000I}\\
+ \hline 
+ \end{array}$$\newpage\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{VIII. $I^u_{8}= \langle -2 a u+2 b+2 a+u-3,\;4 a^2-4 a+9,\;u^2-2 u+1 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{2}=$&$\begin{pmatrix}0\\u\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\2 u-1\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}- u\\-2 u+2\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}a\\a u- a-\frac{1}{2} u+\frac{3}{2}\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}- a u+2 a+\frac{3}{2} u-\frac{1}{2}\\a u- a+\frac{3}{2} u-\frac{1}{2}\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}3 u-2\\3 u-2\end{pmatrix}$ \\
+\flushright $a_{5}=$&$\begin{pmatrix}\frac{1}{2} a u+\frac{1}{2} a-\frac{9}{4} u+\frac{13}{4}\\2 a u-2 a- u+2\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}-2 a u+2 a+5 u-6\\-2 a u+2 a+u-1\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}-\frac{5}{2} a u+\frac{7}{2} a+\frac{13}{4} u-\frac{13}{4}\\1\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}2 a u-2 a-3 u+5\\2 a u-2 a+2 u-1\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}2 a u-2 a-4 u+5\\2 a u-2 a+u-1\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= 1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= 0$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{4},c_{5}\\c_{6},c_{9},c_{10}\\c_{11},c_{12}\end{aligned}$$&$\begin{aligned}
+&(u-1)^4
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{3},c_{7}\\c_{8}\end{aligned}$$&$\begin{aligned}
+&(u+1)^4
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{2},c_{3}\\c_{4},c_{5},c_{6}\\c_{7},c_{8},c_{9}\\c_{10},c_{11},c_{12}\end{aligned}$$&$\begin{aligned}
+&(y-1)^4
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{8}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= \phantom{-}1.00000\phantom{ +0.000000I} \\
+a &= \phantom{-}0.50000 + 1.41421 I \\
+b &= \phantom{-}1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-0.000000 } 0 & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.00000\phantom{ +0.000000I} \\
+a &= \phantom{-}0.50000 + 1.41421 I \\
+b &= \phantom{-}1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-0.000000 } 0 & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.00000\phantom{ +0.000000I} \\
+a &= \phantom{-}0.50000 - 1.41421 I \\
+b &= \phantom{-}1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-0.000000 } 0 & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.00000\phantom{ +0.000000I} \\
+a &= \phantom{-}0.50000 - 1.41421 I \\
+b &= \phantom{-}1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-0.000000 } 0 & \phantom{-0.000000 } 0\\
+ \hline 
+ \end{array}$$\newpage\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{IX. $I^u_{9}= \langle b-1,\;u-1 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{2}=$&$\begin{pmatrix}0\\1\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\1\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}a\\1\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}a+1\\1\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}1\\1\end{pmatrix}$ \\
+\flushright $a_{5}=$&$\begin{pmatrix}a+1\\1\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}a\\1\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}2\\1\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}1\\0\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= 1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= 0$}\\~\\
+\flushleft \textbf{(iv) u-Polynomials at the component} : It cannot be defined for a positive dimension component.\\~\\
+\flushleft \textbf{(v) Riley Polynomials at the component} : It cannot be defined for a positive dimension component.\\~\\
+\newpage\flushleft \textbf{(iv) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c} 
+\text{Solution to }I^u_{9}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= \cdots \\
+a &= \cdots \\
+b &= \cdots\end{aligned}
+ & \phantom{-0.000000 } 0 & \phantom{-0.000000 } 0\\
+ \hline 
+ \end{array}
+$$\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{X. $I^v_{1}= \langle a,\;b+1,\;v+1 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{2}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}0\\-1\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}-1\\-1\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$ \\
+\flushright $a_{5}=$&$\begin{pmatrix}1\\1\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}0\\1\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}-1\\0\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= 1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= 12$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{2},c_{6}\\c_{7},c_{11},c_{12}\end{aligned}$$&$\begin{aligned}
+&u
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{8}\end{aligned}$$&$\begin{aligned}
+&u-1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{4},c_{5},c_{9}\\c_{10}\end{aligned}$$&$\begin{aligned}
+&u+1
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{2},c_{6}\\c_{7},c_{11},c_{12}\end{aligned}$$&$\begin{aligned}
+&y
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&y-1
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^v_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+v &= -1.00000\phantom{ +0.000000I} \\
+a &= \phantom{-0.000000 } 0 \\
+b &= -1.00000\phantom{ +0.000000I}\end{aligned}
+ & \phantom{-}3.28987\phantom{ +0.000000I} & \phantom{-}12.0000\phantom{ +0.000000I}\\
+ \hline 
+ \end{array}$$\newpage
+\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{ XI. u-Polynomials}
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&u(u-1)^7(u^2+1)^2(u^2- u+2)^2(u^2+6 u+1)^2\\
+&\cdot(u^8+4 u^7-4 u^6-28 u^5+82 u^4+152 u^3+164 u^2+280 u+121)\\
+&\cdot(u^8+8 u^7+30 u^6+64 u^5+77 u^4+68 u^3+8 u^2-4 u+4)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{7}\end{aligned}$$&$\begin{aligned}
+&u(u-1)^3(u+1)^4(u^2+2 u-1)^2(u^4+1)(u^4- u^2+2)\\
+&\cdot(u^8-4 u^7+6 u^6-8 u^5+12 u^4-2 u^3-18 u^2+26 u-11)\\
+&\cdot(u^8-2 u^7-2 u^6+8 u^5-3 u^4-4 u^3+2 u^2+2 u+2)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{8}\end{aligned}$$&$\begin{aligned}
+&u(u-1)^5(u+1)^8(u^2-3)(u^4-4 u^3+12 u^2-4 u-7)\\
+&\cdot(u^4+2 u^3+4 u^2-2 u-1)^2\\
+&\cdot(u^8-2 u^7-5 u^6+16 u^5-3 u^4-14 u^3+u^2-2)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{4},c_{5},c_{9}\\c_{10}\end{aligned}$$&$\begin{aligned}
+&u(u-1)^8(u+1)^5(u^2-3)(u^4-4 u^3+12 u^2-4 u-7)\\
+&\cdot(u^4+2 u^3+4 u^2-2 u-1)^2\\
+&\cdot(u^8-2 u^7-5 u^6+16 u^5-3 u^4-14 u^3+u^2-2)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6},c_{12}\end{aligned}$$&$\begin{aligned}
+&u(u-1)^4(u+1)^3(u^2+2 u-1)^2(u^4+1)(u^4- u^2+2)\\
+&\cdot(u^8-4 u^7+6 u^6-8 u^5+12 u^4-2 u^3-18 u^2+26 u-11)\\
+&\cdot(u^8-2 u^7-2 u^6+8 u^5-3 u^4-4 u^3+2 u^2+2 u+2)
+\end{aligned}$\\
+\hline
+\end{tabular}\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{ XII. Riley Polynomials}
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{11}\end{aligned}$$&$\begin{aligned}
+&y(y-1)^7(y+1)^4(y^2-34 y+1)^2(y^2+3 y+4)^2\\
+&\cdot(y^8-24 y^7+\cdots-38712 y+14641)\\
+&\cdot(y^8-4 y^7+30 y^6-548 y^5-2223 y^4-2640 y^3+1224 y^2+48 y+16)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{6},c_{7}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&y(y-1)^7(y^2+1)^2(y^2-6 y+1)^2(y^2- y+2)^2\\
+&\cdot(y^8-8 y^7+30 y^6-64 y^5+77 y^4-68 y^3+8 y^2+4 y+4)\\
+&\cdot(y^8-4 y^7-4 y^6+28 y^5+82 y^4-152 y^3+164 y^2-280 y+121)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3},c_{4},c_{5}\\c_{8},c_{9},c_{10}\end{aligned}$$&$\begin{aligned}
+&y(y-3)^2(y-1)^{13}(y^4+4 y^3+22 y^2-12 y+1)^2\\
+&\cdot(y^4+8 y^3+98 y^2-184 y+49)\\
+&\cdot(y^8-14 y^7+83 y^6-280 y^5+443 y^4-182 y^3+13 y^2-4 y+4)
+\end{aligned}$\\
+\hline
+\end{tabular}
+\vskip 2pc
+\end{document}

@@ -1,0 +1,993 @@
+\documentclass[1p]{elsarticle_modified}
+%\bibliographystyle{elsarticle-num}
+
+%\usepackage[colorlinks]{hyperref}
+%\usepackage{abbrmath_seonhwa} %\Abb, \Ascr, \Acal ,\Abf, \Afrak
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{scalefnt}
+\usepackage{amsbsy}
+\usepackage{kotex}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{xcolor} %% white, black, red, green, blue, cyan, magenta, yellow
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\usepackage{multirow}
+\usepackage{array} % fixed length table
+\usepackage{hhline}
+
+%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+	\edef\arraystretch{#1}%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{*\c@MaxMatrixCols c}}
+\makeatother %https://tex.stackexchange.com/questions/14071/how-can-i-increase-the-line-spacing-in-a-matrix
+%%%%%%%%%%%%%%%
+
+\usepackage[normalem]{ulem}
+
+\newcommand{\msout}[1]{\ifmmode\text{\sout{\ensuremath{#1}}}\else\sout{#1}\fi}
+%SOURCE: \msout is \stkout macro in https://tex.stackexchange.com/questions/20609/strikeout-in-math-mode
+
+\newcommand{\cancel}[1]{
+	\ifmmode
+	{\color{red}\msout{#1}}
+	\else
+	{\color{red}\sout{#1}}
+	\fi
+}
+
+\newcommand{\add}[1]{
+	{\color{blue}\uwave{#1}}
+}
+
+\newcommand{\replace}[2]{
+	\ifmmode
+	{\color{red}\msout{#1}}{\color{blue}\uwave{#2}}
+	\else
+	{\color{red}\sout{#1}}{\color{blue}\uwave{#2}}
+	\fi
+}
+
+\newcommand{\Sol}{\mathcal{S}} %segment
+\newcommand{\D}{D} %diagram
+\newcommand{\A}{\mathcal{A}} %arc
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5 test
+
+\def\sl{\operatorname{\textup{SL}}(2,\Cbb)}
+\def\psl{\operatorname{\textup{PSL}}(2,\Cbb)}
+\def\quan{\mkern 1mu \triangleright \mkern 1mu}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{exam}[thm]{Example}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{alg}[thm]{Algorithm}
+
+\newcommand{\I}{\sqrt{-1}}
+\begin{document}
+
+%\begin{frontmatter}
+%
+%\title{Boundary parabolic representations of knots up to 8 crossings}
+%
+%%% Group authors per affiliation:
+%\author{Yunhi Cho} 
+%\address{Department of Mathematics, University of Seoul, Seoul, Korea}
+%\ead{yhcho@uos.ac.kr}
+%
+%
+%\author{Seonhwa Kim} %\fnref{s_kim}}
+%\address{Center for Geometry and Physics, Institute for Basic Science, Pohang, 37673, Korea}
+%\ead{ryeona17@ibs.re.kr}
+%
+%\author{Hyuk Kim}
+%\address{Department of Mathematical Sciences, Seoul National University, Seoul 08826, Korea}
+%\ead{hyukkim@snu.ac.kr}
+%
+%\author{Seokbeom Yoon}
+%\address{Department of Mathematical Sciences, Seoul National University, Seoul, 08826,  Korea}
+%\ead{sbyoon15@snu.ac.kr}
+%
+%\begin{abstract}
+%We find all boundary parabolic representation of knots up to 8 crossings.
+%
+%\end{abstract}
+%\begin{keyword}
+%    \MSC[2010] 57M25 
+%\end{keyword}
+%
+%\end{frontmatter}
+
+%\linenumbers
+%\tableofcontents
+%
+\newcommand\colored[1]{\textcolor{white}{\rule[-0.35ex]{0.8em}{1.4ex}}\kern-0.8em\color{red} #1}%
+%\newcommand\colored[1]{\textcolor{white}{ #1}\kern-2.17ex	\textcolor{white}{ #1}\kern-1.81ex	\textcolor{white}{ #1}\kern-2.15ex\color{red}#1	}
+
+{\Large $\underline{12n_{0033}~(K12n_{0033})}$}
+
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.6}
+\vspace{1cm}\begin{tabular}{m{100pt}>{\centering\arraybackslash}m{274pt}}
+\multirow{5}{120pt}{
+	\centering
+	\includegraphics[width=112pt]{../../../GIT/diagram.site/Diagrams/png/2122_12n_0033.png}\\
+\ \ \ A knot diagram\footnotemark}&
+\allowdisplaybreaks
+\textbf{Linearized knot diagam} \\
+\cline{2-2}
+ &
+\begin{tikzpicture}[x=20pt, y=17pt]
+	% nodes
+	\node (C0) at (0, 0) {};
+	\node (C1) at (1, 0) {};
+	\node (C1U) at (1, +1) {};
+	\node (C1D) at (1, -1) {3};
+
+	\node (C2) at (2, 0) {};
+	\node (C2U) at (2, +1) {};
+	\node (C2D) at (2, -1) {5};
+
+	\node (C3) at (3, 0) {};
+	\node (C3U) at (3, +1) {};
+	\node (C3D) at (3, -1) {6};
+
+	\node (C4) at (4, 0) {};
+	\node (C4U) at (4, +1) {};
+	\node (C4D) at (4, -1) {9};
+
+	\node (C5) at (5, 0) {};
+	\node (C5U) at (5, +1) {};
+	\node (C5D) at (5, -1) {2};
+
+	\node (C6) at (6, 0) {};
+	\node (C6U) at (6, +1) {};
+	\node (C6D) at (6, -1) {12};
+
+	\node (C7) at (7, 0) {};
+	\node (C7U) at (7, +1) {};
+	\node (C7D) at (7, -1) {11};
+
+	\node (C8) at (8, 0) {};
+	\node (C8U) at (8, +1) {};
+	\node (C8D) at (8, -1) {5};
+
+	\node (C9) at (9, 0) {};
+	\node (C9U) at (9, +1) {};
+	\node (C9D) at (9, -1) {7};
+
+	\node (C10) at (10, 0) {};
+	\node (C10U) at (10, +1) {};
+	\node (C10D) at (10, -1) {1};
+
+	\node (C11) at (11, 0) {};
+	\node (C11U) at (11, +1) {};
+	\node (C11D) at (11, -1) {9};
+
+	\node (C12) at (12, 0) {};
+	\node (C12U) at (12, +1) {};
+	\node (C12D) at (12, -1) {10};
+	\node (C13) at (13, 0) {};
+
+	% arrows
+	\draw[->,>={angle 60}]
+	(C0) edge (C1) (C1) edge (C2) (C2) edge (C3) (C3) edge (C4) (C4) edge (C5) (C5) edge (C6) (C6) edge (C7) (C7) edge (C8) (C8) edge (C9) (C9) edge (C10) (C10) edge (C11) (C11) edge (C12) (C12) edge (C13) ;	\draw[->,>=stealth]
+	(C1U) edge (C1D) (C2D) edge (C2U) (C3U) edge (C3D) (C4U) edge (C4D) (C5D) edge (C5U) (C6U) edge (C6D) (C7D) edge (C7U) (C8U) edge (C8D) (C9D) edge (C9U) (C10U) edge (C10D) (C11D) edge (C11U) (C12U) edge (C12D) ;
+	\end{tikzpicture} \\
+\hhline{~~} \\& 
+\textbf{Solving Sequence} \\ \cline{2-2} 
+ &
+\begin{tikzpicture}[x=23pt, y=7pt]
+	% node
+	\node (A0) at (-1/8, 0) {5,8};
+	\node (A1) at (17/16, 0) {9,11};
+	\node (A2) at (17/8, 0) {12};
+	\node (A3) at (25/8, 0) {4};
+	\node (A4) at (33/8, 0) {7};
+	\node (A5) at (41/8, 0) {10};
+	\node (A6) at (49/8, 0) {1};
+	\node (A7) at (57/8, 0) {6};
+	\node (A8) at (65/8, 0) {3};
+	\node (A9) at (73/8, 0) {2};
+	\node (C1) at (1/2, -1) {$c_{8}$};
+	\node (C2) at (13/8, -1) {$c_{11}$};
+	\node (C3) at (21/8, -1) {$c_{4}$};
+	\node (C4) at (29/8, -1) {$c_{7}$};
+	\node (C5) at (37/8, -1) {$c_{9}$};
+	\node (C6) at (45/8, -1) {$c_{12}$};
+	\node (C7) at (53/8, -1) {$c_{6}$};
+	\node (C8) at (61/8, -1) {$c_{3}$};
+	\node (C9) at (69/8, -1) {$c_{2}$};
+	\node (A10) at (11, 0) {$c_{1},c_{5},c_{10}$};
+
+	% edge
+	\draw[->,>=stealth]	
+	(A0) edge (A1) (A1) edge (A2) (A2) edge (A3) (A3) edge (A4) (A4) edge (A5) (A5) edge (A6) (A6) edge (A7) (A7) edge (A8) (A8) edge (A9) ;
+	\draw[->>,>={angle 60}]	
+	(A9) edge (A10);
+\end{tikzpicture} \\ 
+
+\end{tabular} \\
+
+\footnotetext{
+The image of knot diagram is generated by the software ``\textbf{Draw programme}" developed by Andrew Bartholomew(\url{http://www.layer8.co.uk/maths/draw/index.htm\#Running-draw}), where we modified some parts for our purpose(\url{https://github.com/CATsTAILs/LinksPainter}).
+}\phantom \\ \newline 
+\centering \textbf{Ideals for irreducible components\footnotemark of $X_{\text{par}}$} 
+ 
+\begin{align*}
+I^u_{1}&=\langle 
+9.05330\times10^{317} u^{76}+1.41320\times10^{318} u^{75}+\cdots+2.50588\times10^{321} b+5.09891\times10^{321},\\
+\phantom{I^u_{1}}&\phantom{= \langle  }-5.10110\times10^{318} u^{76}-1.08271\times10^{319} u^{75}+\cdots+5.01177\times10^{321} a-7.58939\times10^{322},\\
+\phantom{I^u_{1}}&\phantom{= \langle  }u^{77}+2 u^{76}+\cdots+20480 u+4096\rangle \\
+I^u_{2}&=\langle 
+-2 u^3- u^2+b-5 u-1,\;3 u^3+4 u^2+a+8 u+8,\;u^4+u^3+3 u^2+2 u+1\rangle \\
+\\
+I^v_{1}&=\langle 
+a,\;164522 v^{11}+355934 v^{10}+\cdots+707733 b-176501,\\
+\phantom{I^v_{1}}&\phantom{= \langle  }v^{12}+3 v^{11}+3 v^{10}+18 v^9+31 v^8-29 v^7-31 v^6-9 v^5+19 v^4+5 v^3-4 v^2+v+1\rangle \\
+\end{align*}
+\raggedright * 3 irreducible components of $\dim_{\mathbb{C}}=0$, with total 93 representations.\\
+\footnotetext{All coefficients of polynomials are rational numbers. But the coefficients are sometimes approximated in decimal forms when there is not enough margin.}
+\newpage
+\renewcommand{\arraystretch}{1}
+\centering \section*{I. $I^u_{1}= \langle 9.05\times10^{317} u^{76}+1.41\times10^{318} u^{75}+\cdots+2.51\times10^{321} b+5.10\times10^{321},\;-5.10\times10^{318} u^{76}-1.08\times10^{319} u^{75}+\cdots+5.01\times10^{321} a-7.59\times10^{322},\;u^{77}+2 u^{76}+\cdots+20480 u+4096 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{5}=$&$\begin{pmatrix}0\\u\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}1\\u^2\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}0.00101783 u^{76}+0.00216033 u^{75}+\cdots+36.5435 u+15.1431\\-0.000361282 u^{76}-0.000563952 u^{75}+\cdots-12.2323 u-2.03477\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}0.000855818 u^{76}+0.00185986 u^{75}+\cdots+31.0338 u+13.6191\\-0.000362414 u^{76}-0.000562641 u^{75}+\cdots-12.0509 u-2.13122\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}u\\u^3+u\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}-0.00303743 u^{76}-0.00486392 u^{75}+\cdots-99.2882 u-15.0764\\-0.000239922 u^{76}-0.000649688 u^{75}+\cdots-15.1615 u-6.17114\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}0.000822714 u^{76}+0.00175824 u^{75}+\cdots+32.3423 u+13.8923\\-0.000210387 u^{76}-0.000333021 u^{75}+\cdots-8.20005 u-1.17725\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}0.000316716 u^{76}+0.000548963 u^{75}+\cdots+6.03001 u+1.86087\\-8.61974\times10^{-6} u^{76}-0.0000450420 u^{75}+\cdots-2.08710 u-0.369176\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}0.000325336 u^{76}+0.000594005 u^{75}+\cdots+8.11710 u+2.23004\\0.0000255950 u^{76}+0.0000821978 u^{75}+\cdots+1.91504 u+0.601280\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}-0.0000229625 u^{76}-0.000118674 u^{75}+\cdots-2.05186 u-1.28107\\0.0000158254 u^{76}+0.0000361796 u^{75}+\cdots+2.94000 u+0.422511\end{pmatrix}$ \\
+\flushright $a_{2}=$&$\begin{pmatrix}-0.0000229625 u^{76}-0.000118674 u^{75}+\cdots-2.05186 u-1.28107\\0.0000353440 u^{76}+0.0000721239 u^{75}+\cdots+4.52395 u+0.720490\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= -1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= 0.000265127 u^{76}+0.00273732 u^{75}+\cdots+71.8347 u+33.0070$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1}\end{aligned}$$&$\begin{aligned}
+&u^{77}+42 u^{76}+\cdots-173 u-1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{5}\end{aligned}$$&$\begin{aligned}
+&u^{77}+8 u^{76}+\cdots+3 u+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3}\end{aligned}$$&$\begin{aligned}
+&u^{77}-8 u^{76}+\cdots+2520 u+1732
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{4},c_{8}\end{aligned}$$&$\begin{aligned}
+&u^{77}+2 u^{76}+\cdots+20480 u+4096
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6}\end{aligned}$$&$\begin{aligned}
+&u^{77}-7 u^{76}+\cdots-18228 u-7979
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{7}\end{aligned}$$&$\begin{aligned}
+&u^{77}- u^{76}+\cdots+7631854 u-2351327
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{9}\end{aligned}$$&$\begin{aligned}
+&u^{77}+4 u^{76}+\cdots-3 u-1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{10},c_{12}\end{aligned}$$&$\begin{aligned}
+&u^{77}-7 u^{76}+\cdots-65 u+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{11}\end{aligned}$$&$\begin{aligned}
+&u^{77}+13 u^{76}+\cdots-200 u-16
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1}\end{aligned}$$&$\begin{aligned}
+&y^{77}-6 y^{76}+\cdots+13671 y-1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{5}\end{aligned}$$&$\begin{aligned}
+&y^{77}+42 y^{76}+\cdots-173 y-1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3}\end{aligned}$$&$\begin{aligned}
+&y^{77}-54 y^{76}+\cdots-552548680 y-2999824
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{4},c_{8}\end{aligned}$$&$\begin{aligned}
+&y^{77}-60 y^{76}+\cdots+234881024 y-16777216
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6}\end{aligned}$$&$\begin{aligned}
+&y^{77}-77 y^{76}+\cdots+2964755496 y-63664441
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{7}\end{aligned}$$&$\begin{aligned}
+&y^{77}-9 y^{76}+\cdots-135685107448604 y-5528738660929
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{9}\end{aligned}$$&$\begin{aligned}
+&y^{77}+2 y^{76}+\cdots-29 y-1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{10},c_{12}\end{aligned}$$&$\begin{aligned}
+&y^{77}-63 y^{76}+\cdots-2399 y-1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{11}\end{aligned}$$&$\begin{aligned}
+&y^{77}+21 y^{76}+\cdots+15168 y-256
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= -0.021202 + 0.991505 I \\
+a &= -0.103805 + 0.681267 I \\
+b &= -0.387707 + 0.512895 I\end{aligned}
+ & -1.29984 - 4.81871 I & -3.73970 + 8.31831 I \\ \hline\begin{aligned}
+u &= -0.021202 - 0.991505 I \\
+a &= -0.103805 - 0.681267 I \\
+b &= -0.387707 - 0.512895 I\end{aligned}
+ & -1.29984 + 4.81871 I & -3.73970 - 8.31831 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.350174 + 0.870277 I \\
+a &= \phantom{-}1.63705 + 0.66516 I \\
+b &= -0.136420 + 1.089040 I\end{aligned}
+ & -4.26262 - 2.29968 I & -11.37943 + 4.09375 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.350174 - 0.870277 I \\
+a &= \phantom{-}1.63705 - 0.66516 I \\
+b &= -0.136420 - 1.089040 I\end{aligned}
+ & -4.26262 + 2.29968 I & -11.37943 - 4.09375 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.552031 + 0.673417 I \\
+a &= \phantom{-}1.42607 + 0.68039 I \\
+b &= -0.151263 - 0.305259 I\end{aligned}
+ & -3.26120 + 0.96418 I & -9.85344 - 3.05224 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.552031 - 0.673417 I \\
+a &= \phantom{-}1.42607 - 0.68039 I \\
+b &= -0.151263 + 0.305259 I\end{aligned}
+ & -3.26120 - 0.96418 I & -9.85344 + 3.05224 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.801656 + 0.115028 I \\
+a &= \phantom{-}1.26895 - 2.37999 I \\
+b &= \phantom{-}0.618575 - 0.439872 I\end{aligned}
+ & \phantom{-}0.77686 - 3.97780 I & -2.71090 + 8.29234 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.801656 - 0.115028 I \\
+a &= \phantom{-}1.26895 + 2.37999 I \\
+b &= \phantom{-}0.618575 + 0.439872 I\end{aligned}
+ & \phantom{-}0.77686 + 3.97780 I & -2.71090 - 8.29234 I \\ \hline\begin{aligned}
+u &= -0.742333 + 0.323629 I \\
+a &= \phantom{-}0.107625 - 0.186343 I \\
+b &= -1.236430 - 0.155289 I\end{aligned}
+ & \phantom{-}0.963117 - 0.556760 I & -4.97972 - 0.27994 I \\ \hline\begin{aligned}
+u &= -0.742333 - 0.323629 I \\
+a &= \phantom{-}0.107625 + 0.186343 I \\
+b &= -1.236430 + 0.155289 I\end{aligned}
+ & \phantom{-}0.963117 + 0.556760 I & -4.97972 + 0.27994 I\\
+ \hline 
+ \end{array}$$\newpage$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= -0.000355 + 0.774042 I \\
+a &= \phantom{-}1.102990 + 0.498400 I \\
+b &= -0.732884 + 0.304781 I\end{aligned}
+ & -1.18097 + 1.51108 I & -2.56147 - 1.04285 I \\ \hline\begin{aligned}
+u &= -0.000355 - 0.774042 I \\
+a &= \phantom{-}1.102990 - 0.498400 I \\
+b &= -0.732884 - 0.304781 I\end{aligned}
+ & -1.18097 - 1.51108 I & -2.56147 + 1.04285 I \\ \hline\begin{aligned}
+u &= -1.241430 + 0.227325 I \\
+a &= \phantom{-}0.549344 - 1.064480 I \\
+b &= \phantom{-}0.517613 - 1.212150 I\end{aligned}
+ & -2.68140 + 1.19053 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.241430 - 0.227325 I \\
+a &= \phantom{-}0.549344 + 1.064480 I \\
+b &= \phantom{-}0.517613 + 1.212150 I\end{aligned}
+ & -2.68140 - 1.19053 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}0.116220 + 0.707665 I \\
+a &= \phantom{-}0.233959 - 0.456579 I \\
+b &= -0.702410 - 0.390271 I\end{aligned}
+ & \phantom{-}1.17719 + 1.40870 I & \phantom{-}3.29231 - 3.00363 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.116220 - 0.707665 I \\
+a &= \phantom{-}0.233959 + 0.456579 I \\
+b &= -0.702410 + 0.390271 I\end{aligned}
+ & \phantom{-}1.17719 - 1.40870 I & \phantom{-}3.29231 + 3.00363 I \\ \hline\begin{aligned}
+u &= -0.715312 + 0.028489 I \\
+a &= \phantom{-}2.04561 + 1.88867 I \\
+b &= \phantom{-}0.654008 + 0.310120 I\end{aligned}
+ & \phantom{-}0.648909 - 0.975553 I & -3.60474 - 0.46426 I \\ \hline\begin{aligned}
+u &= -0.715312 - 0.028489 I \\
+a &= \phantom{-}2.04561 - 1.88867 I \\
+b &= \phantom{-}0.654008 - 0.310120 I\end{aligned}
+ & \phantom{-}0.648909 + 0.975553 I & -3.60474 + 0.46426 I \\ \hline\begin{aligned}
+u &= -0.378806 + 0.592823 I \\
+a &= -1.58189 + 5.75660 I \\
+b &= \phantom{-}2.79582 - 0.75309 I\end{aligned}
+ & -1.97793 + 1.35936 I & -28.8056 - 39.0048 I \\ \hline\begin{aligned}
+u &= -0.378806 - 0.592823 I \\
+a &= -1.58189 - 5.75660 I \\
+b &= \phantom{-}2.79582 + 0.75309 I\end{aligned}
+ & -1.97793 - 1.35936 I & -28.8056 + 39.0048 I\\
+ \hline 
+ \end{array}$$\newpage$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= \phantom{-}0.556381 + 0.425890 I \\
+a &= \phantom{-}0.086610 - 0.285749 I \\
+b &= -1.045290 - 0.515035 I\end{aligned}
+ & \phantom{-}1.65009 + 1.91270 I & -1.87415 + 0.42405 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.556381 - 0.425890 I \\
+a &= \phantom{-}0.086610 + 0.285749 I \\
+b &= -1.045290 + 0.515035 I\end{aligned}
+ & \phantom{-}1.65009 - 1.91270 I & -1.87415 - 0.42405 I \\ \hline\begin{aligned}
+u &= -1.33114\phantom{ +0.000000I} \\
+a &= -1.70526\phantom{ +0.000000I} \\
+b &= -3.65459\phantom{ +0.000000I}\end{aligned}
+ & -4.62840\phantom{ +0.000000I} & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}0.615724 + 0.225295 I \\
+a &= \phantom{-}0.124878 - 0.091560 I \\
+b &= \phantom{-}1.267570 + 0.584855 I\end{aligned}
+ & -0.50082 + 7.43088 I & -9.83588 - 3.06441 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.615724 - 0.225295 I \\
+a &= \phantom{-}0.124878 + 0.091560 I \\
+b &= \phantom{-}1.267570 - 0.584855 I\end{aligned}
+ & -0.50082 - 7.43088 I & -9.83588 + 3.06441 I \\ \hline\begin{aligned}
+u &= -0.377234 + 0.508733 I \\
+a &= \phantom{-}0.828760 - 0.255710 I \\
+b &= -0.080733 - 0.346910 I\end{aligned}
+ & -0.22325 + 1.43278 I & -1.54695 - 5.02383 I \\ \hline\begin{aligned}
+u &= -0.377234 - 0.508733 I \\
+a &= \phantom{-}0.828760 + 0.255710 I \\
+b &= -0.080733 + 0.346910 I\end{aligned}
+ & -0.22325 - 1.43278 I & -1.54695 + 5.02383 I \\ \hline\begin{aligned}
+u &= -0.481913 + 0.382313 I \\
+a &= \phantom{-}0.130464 - 0.111167 I \\
+b &= \phantom{-}1.007620 + 0.380876 I\end{aligned}
+ & -0.04977 + 4.23277 I & -3.74018 - 11.43224 I \\ \hline\begin{aligned}
+u &= -0.481913 - 0.382313 I \\
+a &= \phantom{-}0.130464 + 0.111167 I \\
+b &= \phantom{-}1.007620 - 0.380876 I\end{aligned}
+ & -0.04977 - 4.23277 I & -3.74018 + 11.43224 I \\ \hline\begin{aligned}
+u &= \phantom{-}1.38453 + 0.33788 I \\
+a &= \phantom{-}0.05988 - 1.46102 I \\
+b &= \phantom{-}0.413828 - 1.035170 I\end{aligned}
+ & -2.94680 - 5.49032 I & \phantom{-0.000000 } 0\\
+ \hline 
+ \end{array}$$\newpage$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= \phantom{-}1.38453 - 0.33788 I \\
+a &= \phantom{-}0.05988 + 1.46102 I \\
+b &= \phantom{-}0.413828 + 1.035170 I\end{aligned}
+ & -2.94680 + 5.49032 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -0.13459 + 1.43811 I \\
+a &= \phantom{-}0.0790412 - 0.0963284 I \\
+b &= \phantom{-}0.312084 + 1.155850 I\end{aligned}
+ & -3.00179 + 4.56266 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -0.13459 - 1.43811 I \\
+a &= \phantom{-}0.0790412 + 0.0963284 I \\
+b &= \phantom{-}0.312084 - 1.155850 I\end{aligned}
+ & -3.00179 - 4.56266 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.45101 + 0.03574 I \\
+a &= \phantom{-}0.326600 - 1.171110 I \\
+b &= \phantom{-}0.97849 - 1.54914 I\end{aligned}
+ & -6.59261 - 2.90185 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.45101 - 0.03574 I \\
+a &= \phantom{-}0.326600 + 1.171110 I \\
+b &= \phantom{-}0.97849 + 1.54914 I\end{aligned}
+ & -6.59261 + 2.90185 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.46452 + 0.10406 I \\
+a &= -0.560170 - 0.996722 I \\
+b &= \phantom{-}0.677729 - 0.936305 I\end{aligned}
+ & -7.24514 - 2.22253 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.46452 - 0.10406 I \\
+a &= -0.560170 + 0.996722 I \\
+b &= \phantom{-}0.677729 + 0.936305 I\end{aligned}
+ & -7.24514 + 2.22253 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.47132 + 0.00598 I \\
+a &= -0.486518 - 1.083090 I \\
+b &= -0.427573 - 1.276420 I\end{aligned}
+ & -3.93524 + 7.62228 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.47132 - 0.00598 I \\
+a &= -0.486518 + 1.083090 I \\
+b &= -0.427573 + 1.276420 I\end{aligned}
+ & -3.93524 - 7.62228 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.41409 + 0.41604 I \\
+a &= \phantom{-}0.465625 + 0.947491 I \\
+b &= \phantom{-}0.22019 + 1.50917 I\end{aligned}
+ & -5.83012 - 5.98154 I & \phantom{-0.000000 } 0\\
+ \hline 
+ \end{array}$$\newpage$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= \phantom{-}1.41409 - 0.41604 I \\
+a &= \phantom{-}0.465625 - 0.947491 I \\
+b &= \phantom{-}0.22019 - 1.50917 I\end{aligned}
+ & -5.83012 + 5.98154 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -0.13878 + 1.48672 I \\
+a &= \phantom{-}0.0825775 - 0.0176285 I \\
+b &= -0.507722 + 0.084479 I\end{aligned}
+ & \phantom{-}5.24362 + 3.10833 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -0.13878 - 1.48672 I \\
+a &= \phantom{-}0.0825775 + 0.0176285 I \\
+b &= -0.507722 - 0.084479 I\end{aligned}
+ & \phantom{-}5.24362 - 3.10833 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}0.424249 + 0.248865 I \\
+a &= \phantom{-}3.45186 + 6.12062 I \\
+b &= -0.239118 + 1.076500 I\end{aligned}
+ & -2.15277 + 2.70026 I & -9.88811 + 8.45872 I \\ \hline\begin{aligned}
+u &= \phantom{-}0.424249 - 0.248865 I \\
+a &= \phantom{-}3.45186 - 6.12062 I \\
+b &= -0.239118 - 1.076500 I\end{aligned}
+ & -2.15277 - 2.70026 I & -9.88811 - 8.45872 I \\ \hline\begin{aligned}
+u &= -0.345743 + 0.345351 I \\
+a &= \phantom{-}7.58843 - 5.09506 I \\
+b &= -0.97044 - 1.56022 I\end{aligned}
+ & -1.72233 + 1.49478 I & -0.6746 - 41.0959 I \\ \hline\begin{aligned}
+u &= -0.345743 - 0.345351 I \\
+a &= \phantom{-}7.58843 + 5.09506 I \\
+b &= -0.97044 + 1.56022 I\end{aligned}
+ & -1.72233 - 1.49478 I & -0.6746 + 41.0959 I \\ \hline\begin{aligned}
+u &= -1.50984 + 0.22948 I \\
+a &= -0.494387 + 0.821666 I \\
+b &= -0.149288 + 1.166430 I\end{aligned}
+ & -3.74678 - 1.39146 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.50984 - 0.22948 I \\
+a &= -0.494387 - 0.821666 I \\
+b &= -0.149288 - 1.166430 I\end{aligned}
+ & -3.74678 + 1.39146 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.52087 + 0.23706 I \\
+a &= -1.228330 + 0.361231 I \\
+b &= -3.79275 - 0.22832 I\end{aligned}
+ & -8.26886 - 4.60408 I & \phantom{-0.000000 } 0\\
+ \hline 
+ \end{array}$$\newpage$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= \phantom{-}1.52087 - 0.23706 I \\
+a &= -1.228330 - 0.361231 I \\
+b &= -3.79275 + 0.22832 I\end{aligned}
+ & -8.26886 + 4.60408 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.56389 + 0.08723 I \\
+a &= \phantom{-}0.259742 + 1.214440 I \\
+b &= \phantom{-}0.104963 + 1.054650 I\end{aligned}
+ & -7.30971 + 1.30866 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.56389 - 0.08723 I \\
+a &= \phantom{-}0.259742 - 1.214440 I \\
+b &= \phantom{-}0.104963 - 1.054650 I\end{aligned}
+ & -7.30971 - 1.30866 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.50572 + 0.51745 I \\
+a &= -0.130706 + 1.317800 I \\
+b &= \phantom{-}0.499801 + 1.227290 I\end{aligned}
+ & -6.14031 + 10.62530 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.50572 - 0.51745 I \\
+a &= -0.130706 - 1.317800 I \\
+b &= \phantom{-}0.499801 - 1.227290 I\end{aligned}
+ & -6.14031 - 10.62530 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -0.16466 + 1.59990 I \\
+a &= \phantom{-}0.0829607 + 0.0868689 I \\
+b &= \phantom{-}0.54188 - 1.50526 I\end{aligned}
+ & -6.96276 - 9.17383 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -0.16466 - 1.59990 I \\
+a &= \phantom{-}0.0829607 - 0.0868689 I \\
+b &= \phantom{-}0.54188 + 1.50526 I\end{aligned}
+ & -6.96276 + 9.17383 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.64354 + 0.14674 I \\
+a &= -0.270112 - 0.961040 I \\
+b &= \phantom{-}0.712679 - 1.188220 I\end{aligned}
+ & -11.25600 + 2.45702 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.64354 - 0.14674 I \\
+a &= -0.270112 + 0.961040 I \\
+b &= \phantom{-}0.712679 + 1.188220 I\end{aligned}
+ & -11.25600 - 2.45702 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.61779 + 0.33663 I \\
+a &= -0.587986 + 0.737457 I \\
+b &= \phantom{-}0.885746 + 0.815817 I\end{aligned}
+ & -10.89770 + 7.17611 I & \phantom{-0.000000 } 0\\
+ \hline 
+ \end{array}$$\newpage$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= -1.61779 - 0.33663 I \\
+a &= -0.587986 - 0.737457 I \\
+b &= \phantom{-}0.885746 - 0.815817 I\end{aligned}
+ & -10.89770 - 7.17611 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -0.230559 + 0.235592 I \\
+a &= \phantom{-}3.02477 + 1.23710 I \\
+b &= \phantom{-}0.540667 - 0.856079 I\end{aligned}
+ & -1.89908 + 0.79590 I & -4.83770 + 0.82015 I \\ \hline\begin{aligned}
+u &= -0.230559 - 0.235592 I \\
+a &= \phantom{-}3.02477 - 1.23710 I \\
+b &= \phantom{-}0.540667 + 0.856079 I\end{aligned}
+ & -1.89908 - 0.79590 I & -4.83770 - 0.82015 I \\ \hline\begin{aligned}
+u &= \phantom{-}1.55975 + 0.62424 I \\
+a &= \phantom{-}0.180055 + 1.270440 I \\
+b &= -1.03678 + 1.64077 I\end{aligned}
+ & -8.2935 - 11.7637 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.55975 - 0.62424 I \\
+a &= \phantom{-}0.180055 - 1.270440 I \\
+b &= -1.03678 - 1.64077 I\end{aligned}
+ & -8.2935 + 11.7637 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}0.33491 + 1.65140 I \\
+a &= \phantom{-}0.0714856 + 0.0919876 I \\
+b &= -0.096733 - 1.280030 I\end{aligned}
+ & -6.64004 + 0.42401 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}0.33491 - 1.65140 I \\
+a &= \phantom{-}0.0714856 - 0.0919876 I \\
+b &= -0.096733 + 1.280030 I\end{aligned}
+ & -6.64004 - 0.42401 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.55571 + 0.78921 I \\
+a &= \phantom{-}0.332435 - 1.219240 I \\
+b &= -1.20704 - 1.68387 I\end{aligned}
+ & -11.3053 + 17.4741 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.55571 - 0.78921 I \\
+a &= \phantom{-}0.332435 + 1.219240 I \\
+b &= -1.20704 + 1.68387 I\end{aligned}
+ & -11.3053 - 17.4741 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.62516 + 0.70906 I \\
+a &= -0.256645 + 0.724429 I \\
+b &= \phantom{-}0.741895 + 1.089960 I\end{aligned}
+ & -7.62809 + 3.43602 I & \phantom{-0.000000 } 0\\
+ \hline 
+ \end{array}$$\newpage$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= -1.62516 - 0.70906 I \\
+a &= -0.256645 - 0.724429 I \\
+b &= \phantom{-}0.741895 - 1.089960 I\end{aligned}
+ & -7.62809 - 3.43602 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.60150 + 0.85618 I \\
+a &= -0.277862 - 0.757459 I \\
+b &= \phantom{-}0.97993 - 1.06878 I\end{aligned}
+ & -10.63730 - 9.31613 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.60150 - 0.85618 I \\
+a &= -0.277862 + 0.757459 I \\
+b &= \phantom{-}0.97993 + 1.06878 I\end{aligned}
+ & -10.63730 + 9.31613 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.79507 + 0.49521 I \\
+a &= \phantom{-}0.054400 - 1.080970 I \\
+b &= -0.82388 - 1.84808 I\end{aligned}
+ & -13.6570 + 7.5061 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= -1.79507 - 0.49521 I \\
+a &= \phantom{-}0.054400 + 1.080970 I \\
+b &= -0.82388 + 1.84808 I\end{aligned}
+ & -13.6570 - 7.5061 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.83627 + 0.59317 I \\
+a &= -0.271123 - 0.724908 I \\
+b &= \phantom{-}0.58068 - 1.45335 I\end{aligned}
+ & -13.24420 + 0.87431 I & \phantom{-0.000000 } 0 \\ \hline\begin{aligned}
+u &= \phantom{-}1.83627 - 0.59317 I \\
+a &= -0.271123 + 0.724908 I \\
+b &= \phantom{-}0.58068 + 1.45335 I\end{aligned}
+ & -13.24420 - 0.87431 I & \phantom{-0.000000 } 0\\
+ \hline 
+ \end{array}$$\newpage\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{II. $I^u_{2}= \langle -2 u^3- u^2+b-5 u-1,\;3 u^3+4 u^2+a+8 u+8,\;u^4+u^3+3 u^2+2 u+1 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{5}=$&$\begin{pmatrix}0\\u\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}1\\u^2\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}-3 u^3-4 u^2-8 u-8\\2 u^3+u^2+5 u+1\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}-3 u^3-4 u^2-8 u-8\\2 u^3+u^2+5 u+1\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}u\\u^3+u\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}-8 u^3-19 u+5\\-3 u^3-4 u^2-8 u-8\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}-3 u^3-3 u^2-8 u-7\\2 u^3+2 u^2+5 u+1\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}- u^2-1\\- u^2\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}u^3+2 u\\u^3+u\end{pmatrix}$ \\
+\flushright $a_{2}=$&$\begin{pmatrix}u^3+2 u\\u^3+u^2+2 u+1\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= 1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= -23 u^3-11 u^2-70 u-48$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{4}\end{aligned}$$&$\begin{aligned}
+&u^4- u^3+3 u^2-2 u+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2}\end{aligned}$$&$\begin{aligned}
+&u^4- u^3+u^2+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3}\end{aligned}$$&$\begin{aligned}
+&u^4+u^3+5 u^2- u+2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{5}\end{aligned}$$&$\begin{aligned}
+&u^4+u^3+u^2+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6},c_{7}\end{aligned}$$&$\begin{aligned}
+&u^4+2 u^3+7 u^2+5 u+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{8}\end{aligned}$$&$\begin{aligned}
+&u^4+u^3+3 u^2+2 u+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{9}\end{aligned}$$&$\begin{aligned}
+&u^4-5 u^3+7 u^2-2 u+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{10}\end{aligned}$$&$\begin{aligned}
+&(u-1)^4
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{11}\end{aligned}$$&$\begin{aligned}
+&u^4
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{12}\end{aligned}$$&$\begin{aligned}
+&(u+1)^4
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{4},c_{8}\end{aligned}$$&$\begin{aligned}
+&y^4+5 y^3+7 y^2+2 y+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{5}\end{aligned}$$&$\begin{aligned}
+&y^4+y^3+3 y^2+2 y+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3}\end{aligned}$$&$\begin{aligned}
+&y^4+9 y^3+31 y^2+19 y+4
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6},c_{7}\end{aligned}$$&$\begin{aligned}
+&y^4+10 y^3+31 y^2-11 y+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{9}\end{aligned}$$&$\begin{aligned}
+&y^4-11 y^3+31 y^2+10 y+1
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{10},c_{12}\end{aligned}$$&$\begin{aligned}
+&(y-1)^4
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{11}\end{aligned}$$&$\begin{aligned}
+&y^4
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^u_{2}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+u &= -0.395123 + 0.506844 I \\
+a &= -5.16441 - 2.77418 I \\
+b &= -0.59074 + 2.34806 I\end{aligned}
+ & -1.85594 + 1.41510 I & -24.8178 - 33.5385 I \\ \hline\begin{aligned}
+u &= -0.395123 - 0.506844 I \\
+a &= -5.16441 + 2.77418 I \\
+b &= -0.59074 - 2.34806 I\end{aligned}
+ & -1.85594 - 1.41510 I & -24.8178 + 33.5385 I \\ \hline\begin{aligned}
+u &= -0.10488 + 1.55249 I \\
+a &= \phantom{-}0.164409 - 0.045467 I \\
+b &= -0.409261 + 0.055548 I\end{aligned}
+ & \phantom{-}5.14581 + 3.16396 I & -31.6822 - 20.2078 I \\ \hline\begin{aligned}
+u &= -0.10488 - 1.55249 I \\
+a &= \phantom{-}0.164409 + 0.045467 I \\
+b &= -0.409261 - 0.055548 I\end{aligned}
+ & \phantom{-}5.14581 - 3.16396 I & -31.6822 + 20.2078 I\\
+ \hline 
+ \end{array}$$\newpage\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{III. $I^v_{1}= \langle a,\;1.65\times10^{5} v^{11}+3.56\times10^{5} v^{10}+\cdots+7.08\times10^{5} b-1.77\times10^{5},\;v^{12}+3 v^{11}+\cdots+v+1 \rangle$}
+\flushleft \textbf{(i) Arc colorings}\\
+\begin{tabular}{m{7pt} m{180pt} m{7pt} m{180pt} }
+\flushright $a_{5}=$&$\begin{pmatrix}v\\0\end{pmatrix}$ \\
+\flushright $a_{8}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{9}=$&$\begin{pmatrix}1\\0\end{pmatrix}$ \\
+\flushright $a_{11}=$&$\begin{pmatrix}0\\-0.232463 v^{11}-0.502921 v^{10}+\cdots+0.152902 v+0.249389\end{pmatrix}$ \\
+\flushright $a_{12}=$&$\begin{pmatrix}-0.232463 v^{11}-0.502921 v^{10}+\cdots+0.152902 v+0.249389\\-0.232463 v^{11}-0.502921 v^{10}+\cdots+0.152902 v+0.249389\end{pmatrix}$ \\
+\flushright $a_{4}=$&$\begin{pmatrix}v\\0\end{pmatrix}$ \\
+\flushright $a_{7}=$&$\begin{pmatrix}1\\-1.04198 v^{11}-2.90360 v^{10}+\cdots+1.23849 v-0.574544\end{pmatrix}$ \\
+\flushright $a_{10}=$&$\begin{pmatrix}1.04198 v^{11}+2.90360 v^{10}+\cdots-1.23849 v+1.57454\\1.86146 v^{11}+5.23525 v^{10}+\cdots-2.25349 v+3.04348\end{pmatrix}$ \\
+\flushright $a_{1}=$&$\begin{pmatrix}0.819476 v^{11}+2.33165 v^{10}+\cdots-1.01499 v+1.46894\\1.86146 v^{11}+5.23525 v^{10}+\cdots-2.25349 v+3.04348\end{pmatrix}$ \\
+\flushright $a_{6}=$&$\begin{pmatrix}-0.819476 v^{11}-2.33165 v^{10}+\cdots+1.01499 v-1.46894\\-1.86146 v^{11}-5.23525 v^{10}+\cdots+2.25349 v-3.04348\end{pmatrix}$ \\
+\flushright $a_{3}=$&$\begin{pmatrix}0.529427 v^{11}+1.38124 v^{10}+\cdots+1.20984 v+1.24074\\0.861460 v^{11}+2.23525 v^{10}+\cdots+1.74651 v+2.04348\end{pmatrix}$ \\
+\flushright $a_{2}=$&$\begin{pmatrix}0.137987 v^{11}+0.235197 v^{10}+\cdots+1.72218 v+0.891609\\0.861460 v^{11}+2.23525 v^{10}+\cdots+1.74651 v+2.04348\end{pmatrix}$\\&\end{tabular}
+\flushleft \textbf{(ii) Obstruction class $= 1$}\\~\\
+\flushleft \textbf{(iii) Cusp Shapes $= \frac{1558019}{235911} v^{11}+\frac{3765626}{235911} v^{10}+\cdots-\frac{4340683}{235911} v+\frac{3615109}{235911}$}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(iv) u-Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{3},c_{5}\end{aligned}$$&$\begin{aligned}
+&(u^2- u+1)^6
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2}\end{aligned}$$&$\begin{aligned}
+&(u^2+u+1)^6
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{4},c_{8}\end{aligned}$$&$\begin{aligned}
+&u^{12}
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6},c_{9}\end{aligned}$$&$\begin{aligned}
+&(u^6-3 u^5+5 u^4-4 u^3+2 u^2- u+1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{7},c_{12}\end{aligned}$$&$\begin{aligned}
+&(u^6- u^5- u^4+2 u^3- u+1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{10},c_{11}\end{aligned}$$&$\begin{aligned}
+&(u^6+u^5- u^4-2 u^3+u+1)^2
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\renewcommand{\arraystretch}{1}
+\flushleft \textbf{(v) Riley Polynomials at the component}\newline \\
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1},c_{2},c_{3}\\c_{5}\end{aligned}$$&$\begin{aligned}
+&(y^2+y+1)^6
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{4},c_{8}\end{aligned}$$&$\begin{aligned}
+&y^{12}
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6},c_{9}\end{aligned}$$&$\begin{aligned}
+&(y^6+y^5+5 y^4+6 y^2+3 y+1)^2
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{7},c_{10},c_{11}\\c_{12}\end{aligned}$$&$\begin{aligned}
+&(y^6-3 y^5+5 y^4-4 y^3+2 y^2- y+1)^2
+\end{aligned}$\\
+\hline
+\end{tabular}\\~\\
+\newpage\flushleft \textbf{(vi) Complex Volumes and Cusp Shapes}
+$$\begin{array}{c|c|c}  
+\text{Solutions to }I^v_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+v &= \phantom{-}0.834826 + 0.083652 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= -1.002190 + 0.295542 I\end{aligned}
+ & \phantom{-}1.89061 + 1.10558 I & \phantom{-}3.79900 - 2.81207 I \\ \hline\begin{aligned}
+v &= \phantom{-}0.834826 - 0.083652 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= -1.002190 - 0.295542 I\end{aligned}
+ & \phantom{-}1.89061 - 1.10558 I & \phantom{-}3.79900 + 2.81207 I \\ \hline\begin{aligned}
+v &= -0.489858 + 0.681154 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= -1.002190 + 0.295542 I\end{aligned}
+ & \phantom{-}1.89061 - 2.95419 I & \phantom{-}1.04064 + 4.93773 I \\ \hline\begin{aligned}
+v &= -0.489858 - 0.681154 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= -1.002190 - 0.295542 I\end{aligned}
+ & \phantom{-}1.89061 + 2.95419 I & \phantom{-}1.04064 - 4.93773 I \\ \hline\begin{aligned}
+v &= -0.458424 + 0.081263 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= \phantom{-}1.073950 - 0.558752 I\end{aligned}
+ & \phantom{-0.000000 } -7.72290 I & \phantom{-}2.53591 + 10.48596 I \\ \hline\begin{aligned}
+v &= -0.458424 - 0.081263 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= \phantom{-}1.073950 + 0.558752 I\end{aligned}
+ & \phantom{-0.000000 -}7.72290 I & \phantom{-}2.53591 - 10.48596 I \\ \hline\begin{aligned}
+v &= \phantom{-}0.299588 + 0.356375 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= \phantom{-}1.073950 - 0.558752 I\end{aligned}
+ & \phantom{-0.000000 } -3.66314 I & -2.83009 - 2.28483 I \\ \hline\begin{aligned}
+v &= \phantom{-}0.299588 - 0.356375 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= \phantom{-}1.073950 + 0.558752 I\end{aligned}
+ & \phantom{-0.000000 -}3.66314 I & -2.83009 + 2.28483 I \\ \hline\begin{aligned}
+v &= -2.51133 + 0.49706 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= \phantom{-}0.428243 - 0.664531 I\end{aligned}
+ & -1.89061 + 2.95419 I & \phantom{-}0.48408 - 6.69677 I \\ \hline\begin{aligned}
+v &= -2.51133 - 0.49706 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= \phantom{-}0.428243 + 0.664531 I\end{aligned}
+ & -1.89061 - 2.95419 I & \phantom{-}0.48408 + 6.69677 I\\
+ \hline 
+ \end{array}$$\newpage$$\begin{array}{c|c|c}  
+\text{Solutions to }I^v_{1}& \I (\text{vol} + \sqrt{-1}CS) & \text{Cusp shape}\\
+ \hline 
+\begin{aligned}
+v &= \phantom{-}0.82520 + 2.42341 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= \phantom{-}0.428243 + 0.664531 I\end{aligned}
+ & -1.89061 + 1.10558 I & -11.02954 + 1.23660 I \\ \hline\begin{aligned}
+v &= \phantom{-}0.82520 - 2.42341 I \\
+a &= \phantom{-0.000000 } 0 \\
+b &= \phantom{-}0.428243 - 0.664531 I\end{aligned}
+ & -1.89061 - 1.10558 I & -11.02954 - 1.23660 I\\
+ \hline 
+ \end{array}$$\newpage
+\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{ IV. u-Polynomials}
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}u-Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1}\end{aligned}$$&$\begin{aligned}
+&((u^2- u+1)^6)(u^4- u^3+3 u^2-2 u+1)(u^{77}+42 u^{76}+\cdots-173 u-1)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2}\end{aligned}$$&$\begin{aligned}
+&((u^2+u+1)^6)(u^4- u^3+u^2+1)(u^{77}+8 u^{76}+\cdots+3 u+1)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3}\end{aligned}$$&$\begin{aligned}
+&((u^2- u+1)^6)(u^4+u^3+5 u^2- u+2)(u^{77}-8 u^{76}+\cdots+2520 u+1732)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{4}\end{aligned}$$&$\begin{aligned}
+&u^{12}(u^4- u^3+3 u^2-2 u+1)(u^{77}+2 u^{76}+\cdots+20480 u+4096)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{5}\end{aligned}$$&$\begin{aligned}
+&((u^2- u+1)^6)(u^4+u^3+u^2+1)(u^{77}+8 u^{76}+\cdots+3 u+1)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6}\end{aligned}$$&$\begin{aligned}
+&(u^4+2 u^3+7 u^2+5 u+1)(u^6-3 u^5+5 u^4-4 u^3+2 u^2- u+1)^2\\
+&\cdot(u^{77}-7 u^{76}+\cdots-18228 u-7979)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{7}\end{aligned}$$&$\begin{aligned}
+&(u^4+2 u^3+7 u^2+5 u+1)(u^6- u^5- u^4+2 u^3- u+1)^2\\
+&\cdot(u^{77}- u^{76}+\cdots+7631854 u-2351327)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{8}\end{aligned}$$&$\begin{aligned}
+&u^{12}(u^4+u^3+3 u^2+2 u+1)(u^{77}+2 u^{76}+\cdots+20480 u+4096)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{9}\end{aligned}$$&$\begin{aligned}
+&(u^4-5 u^3+7 u^2-2 u+1)(u^6-3 u^5+5 u^4-4 u^3+2 u^2- u+1)^2\\
+&\cdot(u^{77}+4 u^{76}+\cdots-3 u-1)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{10}\end{aligned}$$&$\begin{aligned}
+&((u-1)^4)(u^6+u^5+\cdots+u+1)^{2}(u^{77}-7 u^{76}+\cdots-65 u+1)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{11}\end{aligned}$$&$\begin{aligned}
+&u^4(u^6+u^5+\cdots+u+1)^{2}(u^{77}+13 u^{76}+\cdots-200 u-16)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{12}\end{aligned}$$&$\begin{aligned}
+&((u+1)^4)(u^6- u^5+\cdots- u+1)^{2}(u^{77}-7 u^{76}+\cdots-65 u+1)
+\end{aligned}$\\
+\hline
+\end{tabular}\newpage\renewcommand{\arraystretch}{1}
+\centering \section*{ V. Riley Polynomials}
+\begin{tabular}{m{50pt}|m{274pt}}
+Crossings & \hspace{64pt}Riley Polynomials at each crossing \\
+\hline $$\begin{aligned}c_{1}\end{aligned}$$&$\begin{aligned}
+&((y^2+y+1)^6)(y^4+5 y^3+\cdots+2 y+1)(y^{77}-6 y^{76}+\cdots+13671 y-1)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{2},c_{5}\end{aligned}$$&$\begin{aligned}
+&((y^2+y+1)^6)(y^4+y^3+3 y^2+2 y+1)(y^{77}+42 y^{76}+\cdots-173 y-1)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{3}\end{aligned}$$&$\begin{aligned}
+&(y^2+y+1)^6(y^4+9 y^3+31 y^2+19 y+4)\\
+&\cdot(y^{77}-54 y^{76}+\cdots-552548680 y-2999824)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{4},c_{8}\end{aligned}$$&$\begin{aligned}
+&y^{12}(y^4+5 y^3+7 y^2+2 y+1)\\
+&\cdot(y^{77}-60 y^{76}+\cdots+234881024 y-16777216)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{6}\end{aligned}$$&$\begin{aligned}
+&(y^4+10 y^3+31 y^2-11 y+1)(y^6+y^5+5 y^4+6 y^2+3 y+1)^2\\
+&\cdot(y^{77}-77 y^{76}+\cdots+2964755496 y-63664441)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{7}\end{aligned}$$&$\begin{aligned}
+&(y^4+10 y^3+31 y^2-11 y+1)(y^6-3 y^5+5 y^4-4 y^3+2 y^2- y+1)^2\\
+&\cdot(y^{77}-9 y^{76}+\cdots-135685107448604 y-5528738660929)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{9}\end{aligned}$$&$\begin{aligned}
+&(y^4-11 y^3+31 y^2+10 y+1)(y^6+y^5+5 y^4+6 y^2+3 y+1)^2\\
+&\cdot(y^{77}+2 y^{76}+\cdots-29 y-1)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{10},c_{12}\end{aligned}$$&$\begin{aligned}
+&(y-1)^4(y^6-3 y^5+5 y^4-4 y^3+2 y^2- y+1)^2\\
+&\cdot(y^{77}-63 y^{76}+\cdots-2399 y-1)
+\end{aligned}$\\
+\hline $$\begin{aligned}c_{11}\end{aligned}$$&$\begin{aligned}
+&y^4(y^6-3 y^5+5 y^4-4 y^3+2 y^2- y+1)^2\\
+&\cdot(y^{77}+21 y^{76}+\cdots+15168 y-256)
+\end{aligned}$\\
+\hline
+\end{tabular}
+\vskip 2pc
+\end{document}
