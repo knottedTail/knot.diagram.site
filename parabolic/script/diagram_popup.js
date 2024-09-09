@@ -1,3 +1,14 @@
+function showHide(div_id) {
+    var x = document.getElementById(div_id);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+
+    return false;
+}
+
 function diagramPopup(url){
     var img=new Image();
     img.src=url;
@@ -11,9 +22,8 @@ function diagramPopup(url){
         var zoom = 3;
         var win_width=parseInt(zoom*img_width);
         var win_height=parseInt(zoom*img_height);
-        console.log("CAT");
-        console.log(win_width);
-        console.log(win_height);
+        // console.log(win_width);
+        // console.log(win_height);
         var diagramPopup = window.open('', '_blank', 'width='+win_width+', height='+win_height+', scrollbars=auto');
         // var diagram_popup = window.open('','_blank','width='+img_width+',height='+height+',top='+top+',left='+left+',menubars=no,scrollbars=auto');
         diagramPopup.document.write("<style>body{margin:0px;}</style><a href = # onclick = window.close() onfocus=this.blur()><img src = '"+url+"'width='"+img_width+"'height='"+img_height+"'></a>");
@@ -66,3 +76,4 @@ function diagramPopup(url){
 //     openImage.document.body.style.zoom="300%";
 //     return false;
 //   }
+
